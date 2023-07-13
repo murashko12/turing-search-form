@@ -29,3 +29,7 @@
 .iconContainer:hover {
     color: black;
 }
+
+.email {
+    color: rgb(78, 137, 0);
+}

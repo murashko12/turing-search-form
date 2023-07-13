@@ -10,6 +10,9 @@ const Form = () => {
     const [searchValue, setSearchValue] = useState("")
 
     const [invites, setInvites] = useState([])
+    
+
+
     console.log(invites);
     useEffect(() => {
         fetch("https://reqres.in/api/users")
@@ -53,7 +56,10 @@ const Form = () => {
                 invites={invites}
                 onClickInvite={onClickInvite}
             />
-            <button className={styles.sendInviteBtn}>Отправить приглашение</button>
+            {
+                invites.length > 0 && <button className={styles.sendInviteBtn}>Отправить приглашение</button>
+            }
+
         </form>
     )
 }

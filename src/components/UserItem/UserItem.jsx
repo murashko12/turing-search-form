@@ -6,8 +6,8 @@ const UserItem = ({id, email, first_name, last_name, avatar, onClickInvite, isIn
         <div className={styles.container}>
             <img className={styles.imgAvatar} src={avatar} alt="user_avatar" />
             <div className={styles.nameContainer}>
-                <p>{first_name} {last_name}</p>
-                <p>{email}</p>
+                <h3>{first_name} {last_name}</h3>
+                <p className={styles.email}>{email}</p>
             </div>
             <div className={styles.iconContainer} onClick={() => onClickInvite(id)}>
                 {isInvited ? <FiMinusCircle size={30}/> : <FiPlusCircle size={30}/>}
