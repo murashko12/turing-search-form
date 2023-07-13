@@ -1,25 +1,7 @@
-import { useEffect, useState } from 'react'
 import UserItem from '../UserItem/UserItem'
 import styles from './usersCont.module.css'
 
-const UsersCont = () => {
-
-    const [users, setUsers] = useState([])
-    const [isLoading, setIsLoading] = useState(true)
-
-    useEffect(() => {
-        fetch("https://reqres.in/api/users")
-        .then(res => res.json())
-        .then(json => {
-            console.log(json);
-            setUsers(json.data)
-        })
-        .catch(err => {
-            console.log(err);
-            alert("err")
-        })
-        .finally(() => setIsLoading(false))
-    }, []);
+const UsersCont = ({users, isLoading}) => {
 
     return (
         <div className={styles.container}>
@@ -27,13 +9,10 @@ const UsersCont = () => {
                 isLoading ? (
                     <div className={styles.skeletonList}>Загрузка</div>
                 ) : (
-                users.map(({id,avatar,email,first_name,last_name}) => (
+                users.map((item) => (
                     <UserItem
-                        key={id}
-                        avatar={avatar}
-                        email={email}
-                        firstName={first_name}
-                        lastName={last_name}
+                        key={item.id}
+                        {...item}
                     />
                 ))
             )}
