@@ -1,7 +1,7 @@
 import UserItem from '../UserItem/UserItem'
 import styles from './usersCont.module.css'
 
-const UsersCont = ({users, isLoading}) => {
+const UsersCont = ({users, isLoading, searchValue}) => {
 
     return (
         <div className={styles.container}>
@@ -9,10 +9,13 @@ const UsersCont = ({users, isLoading}) => {
                 isLoading ? (
                     <div className={styles.skeletonList}>Загрузка</div>
                 ) : (
-                users.map((item) => (
+                users.filter((obj) => {
+                    const fullName = obj.first_name + " " + obj.last_name
+                    return fullName.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()) || obj.email.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())
+                }).map((user) => (
                     <UserItem
-                        key={item.id}
-                        {...item}
+                        key={user.id}
+                        {...user}
                     />
                 ))
             )}

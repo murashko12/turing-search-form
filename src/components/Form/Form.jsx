@@ -7,6 +7,9 @@ const Form = () => {
 
     const [users, setUsers] = useState([])
     const [isLoading, setIsLoading] = useState(true)
+    const [searchValue, setSearchValue] = useState("")
+
+    // const [invites, setInvites] = useState()
 
     useEffect(() => {
         fetch("https://reqres.in/api/users")
@@ -21,14 +24,27 @@ const Form = () => {
         })
         .finally(() => setIsLoading(false))
     }, []);
+    
+    const onChangeSearchValue = (e) => setSearchValue(e.target.value)
+    // const coClickInvite = 
 
     return (
         <form className={styles.container}>
             <div className={styles.containerSearch}>
                 {/* <BsSearch size={25} className={styles.bsSearch}/> */}
-                <input type="text" placeholder="Найти пользователя..." />
+                <input 
+                    type="text" 
+                    placeholder="Найти пользователя..." 
+                    value={searchValue}
+                    onChange={onChangeSearchValue}
+                />
             </div>
-            <UsersCont users={users} isLoading={isLoading}/>
+            <UsersCont 
+                users={users} 
+                isLoading={isLoading}
+                searchValue={searchValue}
+                onChangeSearchValue={onChangeSearchValue}
+            />
             <button className={styles.sendInviteBtn}>Отправить приглашение</button>
         </form>
     )
