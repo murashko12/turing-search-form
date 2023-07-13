@@ -1,7 +1,7 @@
 import UserItem from '../UserItem/UserItem'
 import styles from './usersCont.module.css'
 
-const UsersCont = ({users, isLoading, searchValue}) => {
+const UsersCont = ({users, isLoading, searchValue, onChangeSearchValue, invites, onClickInvite}) => {
 
     return (
         <div className={styles.container}>
@@ -14,7 +14,9 @@ const UsersCont = ({users, isLoading, searchValue}) => {
                     return fullName.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()) || obj.email.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())
                 }).map((user) => (
                     <UserItem
+                        onClickInvite={onClickInvite}
                         key={user.id}
+                        isInvited={invites.includes(user.id)}
                         {...user}
                     />
                 ))

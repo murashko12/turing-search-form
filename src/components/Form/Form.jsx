@@ -9,13 +9,13 @@ const Form = () => {
     const [isLoading, setIsLoading] = useState(true)
     const [searchValue, setSearchValue] = useState("")
 
-    // const [invites, setInvites] = useState()
-
+    const [invites, setInvites] = useState([])
+    console.log(invites);
     useEffect(() => {
         fetch("https://reqres.in/api/users")
         .then(res => res.json())
         .then(json => {
-            console.log(json);
+            // console.log(json); 
             setUsers(json.data)
         })
         .catch(err => {
@@ -26,7 +26,13 @@ const Form = () => {
     }, []);
     
     const onChangeSearchValue = (e) => setSearchValue(e.target.value)
-    // const coClickInvite = 
+    const onClickInvite = (id) => {
+        if (invites.includes(id)) {
+            setInvites(prev => prev.filter(_id => _id !==id))
+        } else {
+            setInvites(prev => [...prev, id])
+        }
+    }
 
     return (
         <form className={styles.container}>
@@ -44,6 +50,8 @@ const Form = () => {
                 isLoading={isLoading}
                 searchValue={searchValue}
                 onChangeSearchValue={onChangeSearchValue}
+                invites={invites}
+                onClickInvite={onClickInvite}
             />
             <button className={styles.sendInviteBtn}>Отправить приглашение</button>
         </form>

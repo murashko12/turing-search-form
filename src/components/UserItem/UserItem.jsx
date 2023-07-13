@@ -1,7 +1,7 @@
 import styles from './userItem.module.css'
-import { BsPlusCircle } from 'react-icons/bs';
+import { FiPlusCircle, FiMinusCircle } from 'react-icons/fi';
 
-const UserItem = ({email, first_name, last_name, avatar}) => {
+const UserItem = ({id, email, first_name, last_name, avatar, onClickInvite, isInvited}) => {
     return (
         <div className={styles.container}>
             <img className={styles.imgAvatar} src={avatar} alt="user_avatar" />
@@ -9,7 +9,10 @@ const UserItem = ({email, first_name, last_name, avatar}) => {
                 <p>{first_name} {last_name}</p>
                 <p>{email}</p>
             </div>
-            <BsPlusCircle size={30}/>
+            <div className={styles.iconContainer} onClick={() => onClickInvite(id)}>
+                {isInvited ? <FiMinusCircle size={30}/> : <FiPlusCircle size={30}/>}
+                
+            </div>
         </div>
     )
 }
