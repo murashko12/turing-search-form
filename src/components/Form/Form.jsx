@@ -1,17 +1,18 @@
 import styles from './form.module.css'
 // import { BsSearch } from 'react-icons/bs';
 import UsersCont from '../Users/UsersCont';
+
 import { useEffect, useState } from 'react';
+import Success from '../Success/Success';
 
-const Form = () => {
-
+const Form = (success, setSuccess) => {
     const [users, setUsers] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [searchValue, setSearchValue] = useState("")
 
     const [invites, setInvites] = useState([])
-    
 
+    // const [success, setSuccess] = useState(false)
 
     console.log(invites);
     useEffect(() => {
@@ -38,6 +39,7 @@ const Form = () => {
     }
 
     return (
+        
         <form className={styles.container}>
             <div className={styles.containerSearch}>
                 {/* <BsSearch size={25} className={styles.bsSearch}/> */}
@@ -57,11 +59,12 @@ const Form = () => {
                 onClickInvite={onClickInvite}
             />
             {
-                invites.length > 0 && <button className={styles.sendInviteBtn}>Отправить приглашение</button>
+                invites.length > 0 && <button onClick={() => setSuccess(true)} className={styles.sendInviteBtn}>Отправить приглашение</button>
             }
-
+            {/* <Success success={success} setSuccess={setSuccess}/> */}
         </form>
+        
     )
 }
-
+ 
 export default Form

@@ -11,7 +11,6 @@ const UserItem = ({id, email, first_name, last_name, avatar, onClickInvite, isIn
             </div>
             <div className={styles.iconContainer} onClick={() => onClickInvite(id)}>
                 {isInvited ? <FiMinusCircle size={30}/> : <FiPlusCircle size={30}/>}
-                
             </div>
         </div>
     )

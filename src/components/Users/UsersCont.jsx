@@ -11,7 +11,10 @@ const UsersCont = ({users, isLoading, searchValue, onChangeSearchValue, invites,
                 ) : (
                 users.filter((obj) => {
                     const fullName = obj.first_name + " " + obj.last_name
-                    return fullName.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()) || obj.email.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())
+                    return (
+                        fullName.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()) 
+                        || obj.email.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())
+                    )
                 }).map((user) => (
                     <UserItem
                         onClickInvite={onClickInvite}
