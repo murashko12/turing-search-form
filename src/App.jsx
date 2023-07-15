@@ -11,17 +11,18 @@ function App() {
         <main>
             <div className="mainContainerForm">
                 {
-                success ? 
+                success 
+                ? 
                 <Success 
-                count={invites.length}
-                setSuccess={setSuccess}
-                setInvites={setInvites}
+                    count={invites.length}
+                    setSuccess={setSuccess}
+                    setInvites={setInvites}
                 />
                 : 
                 <Form
-                setSuccess={setSuccess} 
-                invites={invites}
-                setInvites={setInvites}
+                    setSuccess={setSuccess} 
+                    invites={invites}
+                    setInvites={setInvites}
                 />
             }            
             </div>

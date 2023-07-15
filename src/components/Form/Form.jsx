@@ -1,5 +1,4 @@
 import styles from './form.module.css'
-// import { BsSearch } from 'react-icons/bs';
 import UsersCont from '../Users/UsersCont';
 import { useEffect, useState } from 'react';
 
@@ -35,7 +34,6 @@ const Form = ({ setSuccess, invites, setInvites}) => {
         
         <form className={styles.container}>
             <div className={styles.containerSearch}>
-                {/* <BsSearch size={25} className={styles.bsSearch}/> */}
                 <input 
                     type="text" 
                     placeholder="Найти пользователя..." 
