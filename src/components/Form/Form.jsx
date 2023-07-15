@@ -1,25 +1,18 @@
 import styles from './form.module.css'
 // import { BsSearch } from 'react-icons/bs';
 import UsersCont from '../Users/UsersCont';
-
 import { useEffect, useState } from 'react';
-import Success from '../Success/Success';
 
-const Form = (success, setSuccess) => {
+
+const Form = ({ setSuccess, invites, setInvites}) => {
     const [users, setUsers] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [searchValue, setSearchValue] = useState("")
 
-    const [invites, setInvites] = useState([])
-
-    // const [success, setSuccess] = useState(false)
-
-    console.log(invites);
     useEffect(() => {
         fetch("https://reqres.in/api/users")
         .then(res => res.json())
         .then(json => {
-            // console.log(json); 
             setUsers(json.data)
         })
         .catch(err => {
@@ -54,14 +47,13 @@ const Form = (success, setSuccess) => {
                 users={users} 
                 isLoading={isLoading}
                 searchValue={searchValue}
-                onChangeSearchValue={onChangeSearchValue}
                 invites={invites}
                 onClickInvite={onClickInvite}
             />
             {
-                invites.length > 0 && <button onClick={() => setSuccess(true)} className={styles.sendInviteBtn}>Отправить приглашение</button>
+                invites.length > 0 && <button onClick={(e) =>{e.preventDefault(); setSuccess(true)}} className={styles.sendInviteBtn}>Отправить приглашение</button>
             }
-            {/* <Success success={success} setSuccess={setSuccess}/> */}
+            
         </form>
         
     )
