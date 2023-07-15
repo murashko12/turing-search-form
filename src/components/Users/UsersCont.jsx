@@ -1,7 +1,7 @@
 import UserItem from '../UserItem/UserItem'
 import styles from './usersCont.module.css'
 
-const UsersCont = ({users, isLoading, searchValue, onChangeSearchValue, invites, onClickInvite}) => {
+const UsersCont = ({users, isLoading, searchValue, invites, onClickInvite}) => {
 
     return (
         <div className={styles.container}>
